@@ -1,0 +1,15 @@
+{
+    "eslint.validate": ["json", "javascript", "svelte", "typescript"],
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+}
