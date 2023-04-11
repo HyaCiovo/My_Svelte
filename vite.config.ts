@@ -11,6 +11,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
   // Only run PurgeCSS in production builds
   if (command === 'build') {
     return {
+      publicPath: '/dist/',
       plugins,
       css: {
         postcss: {
