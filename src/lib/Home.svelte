@@ -1,9 +1,22 @@
 <script lang="ts">
   import { apiKeyStorage } from './Storage.svelte'
+  import { Notification } from '@svelteuidev/core'
+  import { Check } from 'radix-icons-svelte'
 
   $: apiKey = $apiKeyStorage
+  let notice = false
 </script>
 
+{#if notice}
+  <Notification
+    class="fixed"
+    icon={Check}
+    title="API Key已保存成功"
+    withCloseButton={false}
+  >
+    现在，你可以去创建自己的chat了
+  </Notification>
+{/if}
 <article class="message" class:is-danger={!apiKey} class:is-warning={apiKey}>
   <div class="message-body">
     请设置你的 OpenAI API key :
@@ -12,6 +25,10 @@
       on:submit|preventDefault={(event) => {
         if (event.target && event.target[0].value) {
           apiKeyStorage.set(event.target[0].value)
+          notice = true
+          setTimeout(() => {
+            notice = false
+          }, 1500)
         }
       }}
     >
@@ -32,9 +49,9 @@
 
     {#if !apiKey}
       <p class="help is-danger">
-        请输入你的 <a href="https://platform.openai.com/account/api-keys"
-          >OpenAI API key</a
-        > above to use ChatGPT-web. It is required to use ChatGPT-web.
+        请在上方输入框中输入你的 <a
+          href="https://platform.openai.com/account/api-keys">OpenAI API key</a
+        > 没它可用不了本网站。
       </p>
     {/if}
   </div>

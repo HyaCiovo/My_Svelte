@@ -83,7 +83,7 @@
             if (activeChatId) {
               exportAsMarkdown(activeChatId)
             }
-          }}><span class="greyscale mr-2">📥</span> Export chat</a
+          }}><span class="greyscale mr-2">📥</span> 导出为Markdown文件</a
         >
       </li>
     {/if}

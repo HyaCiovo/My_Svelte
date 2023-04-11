@@ -12,7 +12,6 @@
     type Chat,
     supportedModels
   } from './Types.svelte'
-  import Prompts from './Prompts.svelte'
   import Messages from './Messages.svelte'
 
   import { afterUpdate, onMount } from 'svelte'
@@ -372,7 +371,7 @@
 
   <div class="level-right">
     <p class="level-item">
-      <button class="button is-warning" on:click={() => { clearMessages(chatId) }}><span class="greyscale mr-2">🗑️</span> Clear messages</button>
+      <button class="button is-warning" on:click={() => { clearMessages(chatId) }}><span class="greyscale mr-2">🗑️</span> 清空消息</button>
     </p>
   </div>
 </nav>
@@ -387,15 +386,11 @@
   </article>
 {/if}
 
-{#if chat.messages.length === 0}
-  <Prompts bind:input />
-{/if}
-
 <form class="field has-addons has-addons-right is-align-items-flex-end" on:submit|preventDefault={() => submitForm()}>
   <p class="control is-expanded">
     <textarea
       class="input is-info is-focused chat-input"
-      placeholder="Type your message here..."
+      placeholder="在这里输入你的问题..."
       rows="1"
       on:keydown={(e) => {
         // Only send if Enter is pressed, not Shift+Enter
@@ -404,7 +399,7 @@
           e.preventDefault()
         }
       }}
-      on:input={(e) => {
+      on:input={() => {
         // Resize the textarea to fit the content - auto is important to reset the height after deleting content
         input.style.height = 'auto'
         input.style.height = input.scrollHeight + 'px'
@@ -421,7 +416,7 @@
     <button class="button" on:click|preventDefault={showSettings}><span class="greyscale">⚙️</span></button>
   </p>
   <p class="control">
-    <button class="button is-info" type="submit">Send</button>
+    <button class="button is-info" type="submit">发送</button>
   </p>
 </form>
 
@@ -439,10 +434,10 @@
   <div class="modal-background" on:click={closeSettings} />
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Settings</p>
+      <p class="modal-card-title">设置</p>
     </header>
     <section class="modal-card-body">
-      <p class="notification is-warning">Below are the settings that OpenAI allows to be changed for the API calls. See the <a href="https://platform.openai.com/docs/api-reference/chat/create">OpenAI API docs</a> for more details.</p>
+      <p class="notification is-warning">下面是OpenAI允许切换的可访问的API类型。你可以通过访问 <a href="https://platform.openai.com/docs/api-reference/chat/create">OpenAI API 开放文档</a> 查看更多细节。</p>
       {#each settingsMap as setting}
         <div class="field is-horizontal">
           <div class="field-label is-normal">
@@ -478,8 +473,8 @@
     </section>
 
     <footer class="modal-card-foot">
-      <button class="button is-info" on:click={closeSettings}>Close settings</button>
-      <button class="button" on:click={clearSettings}>Clear settings</button>
+      <button class="button is-info" on:click={closeSettings}>关闭设置</button>
+      <button class="button" on:click={clearSettings}>重置设置</button>
     </footer>
   </div>
 </div>
@@ -490,7 +485,7 @@
   <div class="modal-background" on:click={closeChatNameSettings} />
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Enter a new name for this chat</p>
+      <p class="modal-card-title">请为这个chat输入一个New name</p>
     </header>
     <section class="modal-card-body">
       <div class="field is-horizontal">
@@ -511,7 +506,7 @@
     </section>
     <footer class="modal-card-foot">
       <input type="submit" class="button is-info" value="Save" />
-      <button class="button" on:click={closeChatNameSettings}>Cancel</button>
+      <button class="button" on:click={closeChatNameSettings}>取消</button>
     </footer>
   </div>
 </form>

@@ -1,5 +1,5 @@
 {
-  "name": "chatgpt-web",
+  "name": "chatgpt-web-for_sin",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,6 @@
     "build:github": "vite build --base=/chatgpt-web/",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "tauri": "tauri",
     "lint": "eslint . --fix"
   },
   "devDependencies": {
@@ -18,7 +17,6 @@
     "@microsoft/fetch-event-source": "^2.0.1",
     "@rollup/plugin-dsv": "^3.0.2",
     "@sveltejs/vite-plugin-svelte": "^2.0.4",
-    "@tauri-apps/cli": "^1.2.3",
     "@tsconfig/svelte": "^4.0.1",
     "@types/marked": "^4.0.8",
     "@types/node": "^18.15.11",
@@ -38,5 +36,10 @@
     "tslib": "^2.5.0",
     "typescript": "^5.0.3",
     "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "@svelteuidev/composables": "^0.11.1",
+    "@svelteuidev/core": "^0.11.1",
+    "radix-icons-svelte": "^1.2.1"
   }
 }
