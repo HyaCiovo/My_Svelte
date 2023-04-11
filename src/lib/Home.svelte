@@ -9,7 +9,7 @@
 
 {#if notice}
   <Notification
-    class="fixed"
+    style="position:fixed;top:2vh;left:74%;z-index:999999"
     icon={Check}
     title="API Key已保存成功"
     withCloseButton={false}
